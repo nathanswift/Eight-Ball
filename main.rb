@@ -25,18 +25,25 @@
 #bonus
 #add answer to the array
 #store the answers so that you can push them into answers array
+require "colorize"
+require "pry"
 
 class EightBall
     
     def initialize
+        @answers = ["Yes", "No", "Probably", "Not looking so hot"]
         menu
     end
 
     def menu
-        puts "Welcome to the Eight Ball"
+        puts 
+        puts "             Welcome to the Eight Ball".colorize(:cyan)
         puts "-" * 50
-        puts "1.) Ask the Eight Ball a question"
-        puts "2.) Exit"
+        puts
+        puts "1.) Ask the Eight Ball a question".colorize(:cyan)
+        puts "2.) Exit".colorize(:cyan)
+        puts
+        puts "-" * 50
         user_selection
     end
 
@@ -54,11 +61,14 @@ class EightBall
     end
 
     def askQuestion
-        @answers = ["Yes", "No", "Probably", "Not looking so hot"]
-        puts "What is your question"
+        puts "What is your question?".colorize(:cyan)
+        puts
         input = gets.strip
-        answers = @answers.sample
+        answers = "🎱  > #{@answers.sample.colorize(:green)}"
+        puts
         puts answers
+        puts
+        puts "-" * 50
         sleep 2
         menu
     end
@@ -67,11 +77,11 @@ class EightBall
         puts "Type exit to leave the program"
         response = gets.strip.downcase
         if response == "exit"
-            puts "Thanks Goodbye!"
+            puts "Thanks Goodbye!".colorize(:red)
             sleep 2
             exit
         else
-            "invalid choice"
+            "Invalid choice"
             menu
         end
     end
