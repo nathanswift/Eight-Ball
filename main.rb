@@ -23,7 +23,7 @@
 # Return an answer
 
 #bonus
-#function to add answer
+#add answer to the array
 #store the answers so that you can push them into answers array
 
 class EightBall
@@ -65,13 +65,19 @@ class EightBall
 
     def exit_program
         puts "Type exit to leave the program"
-        response = gets.to_i.downcase
+        response = gets.strip.downcase
         if response == "exit"
+            puts "Thanks Goodbye!"
+            sleep 2
             exit
         else
             "invalid choice"
             menu
         end
+    end
+
+    def add_answers 
+        puts "Add an answer to the loop"
     end
 end
 
