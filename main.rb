@@ -32,16 +32,20 @@ class EightBall
     
     def initialize
         @answers = ["Yes", "No", "Probably", "Not looking so hot"]
+        @new_answers = @answers.clone
         menu
     end
 
     def menu
         puts 
-        puts "             Welcome to the Eight Ball".colorize(:cyan)
+        puts "            ~ Welcome to the Eight Ball ~".colorize(:cyan)
         puts "-" * 50
         puts
         puts "1.) Ask the Eight Ball a question".colorize(:cyan)
-        puts "2.) Exit".colorize(:cyan)
+        puts "2.) Add your own answers".colorize(:cyan)
+        puts "3.) View available answers".colorize(:cyan)
+        puts "4.) Reset answers".colorize(:cyan)
+        puts "5.) Exit".colorize(:cyan)
         puts
         puts "-" * 50
         user_selection
@@ -51,8 +55,14 @@ class EightBall
         choice = gets.to_i
         case choice
         when 1
-            askQuestion
+            ask_question
         when 2
+            add_answer
+        when 3
+            view_answers
+        when 4 
+            reset_answers
+        when 5
             exit_program
         else
             "Invalid Choice"
@@ -60,11 +70,12 @@ class EightBall
         end
     end
 
-    def askQuestion
+    def ask_question
+        puts "-" * 50
         puts "What is your question?".colorize(:cyan)
         puts
         input = gets.strip
-        answers = "🎱  > #{@answers.sample.colorize(:green)}"
+        answers = "🎱  > #{@new_answers.sample.colorize(:green)}"
         puts
         puts answers
         puts
@@ -74,20 +85,40 @@ class EightBall
     end
 
     def exit_program
-        puts "Type exit to leave the program"
+        puts "Type exit to leave the program".colorize(:red)
         response = gets.strip.downcase
         if response == "exit"
             puts "Thanks Goodbye!".colorize(:red)
             sleep 2
             exit
         else
-            "Invalid choice"
+            "Invalid choice".colorize(:red)
             menu
         end
     end
 
-    def add_answers 
-        puts "Add an answer to the loop"
+    def add_answer 
+        puts "-" * 50
+        puts "Add an answer to the Eight Ball".colorize(:cyan)
+        puts
+        @new_answers << gets.strip
+        menu
+    end
+
+    def view_answers
+        puts "-" * 50
+        puts @new_answers
+        puts
+        sleep 3
+        menu
+    end
+
+    def reset_answers
+        @new_answers = @answer
+        puts "Your answers have been reset"
+        puts
+        sleep 3
+        menu
     end
 end
 
